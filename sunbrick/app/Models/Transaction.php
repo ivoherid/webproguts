@@ -8,12 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-
-    /**
-     * Get the user that owns the Transaction
-     *
-     *
-     */
     protected $with = ['user','menu'];
     public function user()
     {
@@ -26,8 +20,4 @@ class Transaction extends Model
 
         return $this->belongsTo(Menu::class,'coffee_id');
     }
-
-    // public function name(){
-    //     return $this['coffee'];
-    // }
 }

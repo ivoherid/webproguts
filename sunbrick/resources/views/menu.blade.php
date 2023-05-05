@@ -19,10 +19,10 @@
     <section class="hero">
         <main class="content">
             <ul class="category">
-                <li><a href="/user/{{ $user->id }}/menu/1/a" id="1">Signature</a></li>
-                <li><a href="/user/{{ $user->id }}/menu/2/a" id="2">Espresso</a></li>
-                <li><a href="/user/{{ $user->id }}/menu/3/a" id="3">Brewed</a></li>
-                <li><a href="/user/{{ $user->id }}/menu/4/a" id="4">Blended Coffee</a></li>
+                <li><a href="#" id="1">Signature</a></li>
+                <li><a href="#" id="2">Espresso</a></li>
+                <li><a href="#" id="3">Brewed</a></li>
+                <li><a href="#" id="4">Blended Coffee</a></li>
             </ul>
             <div class="jumbotron jumbotron-fluid">
                 @foreach ($menu as $data)
@@ -45,6 +45,7 @@
 </body>
 <script>
     var member = {!! json_encode($user->loyalty) !!};
+    alert(member);
     if (member == 'GOLD') {
         document.documentElement.style.setProperty('--primary', '#C6A961');
 

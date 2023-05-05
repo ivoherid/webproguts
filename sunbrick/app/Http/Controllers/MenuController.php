@@ -9,12 +9,11 @@ use App\Models\user;
 class MenuController extends Controller
 {
 
-    public function tampil(){
+    public function tampil($id){
         $menu =  Menu::all();
-        $id = 1;
         $user = User::find($id);
         $type = 1;
 
-        return view('menu',['menu' => $menu, 'user'=>$user])->with($type);
+        return view('menu',['menu' => $menu, 'user'=>$user]);
     }
 }
