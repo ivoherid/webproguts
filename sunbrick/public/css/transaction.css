@@ -1,0 +1,19 @@
+.transaction {
+    display: flex;
+    flex-direction: column;
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    margin: 1rem 5rem;
+    width: 10rem;
+}
+
+.card-body{
+    margin: 2rem 1rem;
+}
+
+.card-body span{
+    font-weight: 800;
+}
