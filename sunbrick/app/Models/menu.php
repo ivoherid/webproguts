@@ -13,4 +13,9 @@ class menu extends Model
     {
         return $this->belongsToMany(Transaction::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -18,3 +18,13 @@
     font-size: 1.2em;
     text-decoration: none;
 }
+
+button{
+    background-color: var(--primary);
+
+}
+
+button:hover{
+    background-color: white;
+    transition: 0.3s;
+}

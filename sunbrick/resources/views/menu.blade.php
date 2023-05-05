@@ -19,16 +19,16 @@
     <section class="hero">
         <main class="content">
             <ul class="category">
-                <li><a href="#" id="1">Signature</a></li>
-                <li><a href="#" id="2">Espresso</a></li>
-                <li><a href="#" id="3">Brewed</a></li>
-                <li><a href="#" id="4">Blended Coffee</a></li>
+                <li><button onclick="filterSelection('1')" id="1">Signature</button></li>
+                <li><button onclick="filterSelection('2')" id="2">Espresso</button></li>
+                <li><button onclick="filterSelection('3')" id="3">Brewed</button></li>
+                <li><button onclick="filterSelection('4')" id="4">Blended Coffee</button></li>
             </ul>
             <div class="jumbotron jumbotron-fluid">
                 @foreach ($menu as $data)
                     <a style="text-decoration: none;" href="#"
                         onclick="purchaseConfirmation({{ $data->name }}, {{ $data->id }}, {{ $user->id }})">
-                        <div class="card">
+                        <div class="card {{ $data->types }}">
                             <img class="card-img-top" src="{{ asset('img/img_stock.jpg') }}"
                                 alt="{{ $data->name }} Image">
                             <div class="card-body">
@@ -45,11 +45,46 @@
 </body>
 <script>
     var member = {!! json_encode($user->loyalty) !!};
-    alert(member);
     if (member == 'GOLD') {
         document.documentElement.style.setProperty('--primary', '#C6A961');
-
     }
+
+    function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("card");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            HideClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) ShowClass(x[i], "show");
+        }
+    }
+
+    function ShowClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) {
+                element.className += " " + arr2[i];
+            }
+        }
+    }
+
+    // Hide elements that are not selected
+    function HideClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+            }
+        }
+        element.className = arr1.join(" ");
+    }
+
+
+
 
     function purchaseConfirmation(coffee_name, coffee_id, user_id) {
         if (confirm('Are you sure want to buy ' + coffee_name + '?')) {
